@@ -1,0 +1,24 @@
+{
+	"development": {
+		"API_BASE": {
+			"value": "标准版",
+			"data": {
+				"标准版": "http://localhost:16022/",
+				"MOE版": "http://localhost:26019/",
+				"Tiny版": "http://localhost:36019/"
+			}
+		},
+		"APP_ID": "test123"
+	},
+	"production": {
+		"API_BASE": {
+			"value": "标准版",
+			"data": {
+				"标准版": "http://localhost:16022/",
+				"MOE版": "http://localhost:26019/",
+				"Tiny版": "http://localhost:36019/"
+			}
+		},
+		"APP_ID": "produ123"
+	}
+}

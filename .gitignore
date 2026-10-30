@@ -1,0 +1,28 @@
+# ===== 大数据集与预训练权重（GitHub 不适合存放，需自行下载）=====
+data/
+**/data/
+pretrained_ckpt/
+*.pth
+*.pt
+*.pkl
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ===== 日志与临时文件 =====
+*.log
+server.log
+wget-log
+api_out/
+
+# ===== 工作区/编辑器 =====
+*.code-workspace
+.vscode/
+.idea/
+
+# ===== 系统 =====
+.DS_Store
