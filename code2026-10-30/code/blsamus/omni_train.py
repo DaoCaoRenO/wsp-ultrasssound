@@ -27,8 +27,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--modelname', default='SAMUS', type=str, help='type of model, e.g., SAM, SAMFull, MedSAM, MSA, SAMed, SAMUS...')
 parser.add_argument('--device', type=str, default='cuda', help='cuda or cpu')
 parser.add_argument('--root_path', type=str,
-                    default='/root/autodl-tmp/wsp_uusic/blsamus/data', help='root dir for data')
-parser.add_argument('--output_dir', type=str, default='/root/autodl-tmp/wsp_uusic/blsamus/exp_out/samus_debug', help='output dir')
+                    default='./data', help='root dir for data')
+parser.add_argument('--output_dir', type=str, default='./exp_out/samus_b_trial', help='output dir')
 parser.add_argument('--max_epochs', type=int,
                     default=200, help='maximum epoch number to train')
 parser.add_argument('--batch_size', type=int,
@@ -42,7 +42,7 @@ parser.add_argument('--img_size', type=int,
                     default=224, help='input patch size of network input')
 parser.add_argument('--seed', type=int,
                     default=1234, help='random seed')
-parser.add_argument('--cfg', type=str, default="/root/autodl-tmp/wsp_uusic/blsamus/configs/samus_config.yaml",
+parser.add_argument('--cfg', type=str, default="./configs/samus_config.yaml",
                     metavar="FILE", help='path to config file', )
 parser.add_argument(
     "--opts",
