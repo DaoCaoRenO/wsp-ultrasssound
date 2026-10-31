@@ -5,7 +5,7 @@ export PATH=/home/linux/anaconda3/envs/torch2.8_cuda12.8/bin:$PATH
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 # ===== 训练：SAMUS vit_b 完整版；数据软链自 fjh_blsamus_tiny/data =====
-# batch_size=32：32%6!=0 不触发 lr 自动缩放，base_lr 保持 1e-5
+# batch_size=16：实测 32/24 均 OOM（vit_b 峰值 22G）；16 不触发 lr 缩放
 python -m torch.distributed.launch \
     --use_env \
     --nproc_per_node=1 \
@@ -14,7 +14,7 @@ python -m torch.distributed.launch \
     --root_path=./data \
     --cfg=./configs/samus_config.yaml \
     --output_dir=exp_out/samus_b_trial \
-    --batch_size=32 \
+    --batch_size=12 \
     --base_lr=1e-5 \
     --max_epochs=200
 
