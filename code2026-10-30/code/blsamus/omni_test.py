@@ -84,6 +84,7 @@ def inference(args, model, test_save_path=None):
         "DDTI",
         "Fetal_HC",
         "KidneyUS",
+        "TN3K",  # 零样本跨集验证：MainPatient 官方 test 379 张
         "private_Thyroid",
         "private_Kidney",
         "private_Fetal_Head",
