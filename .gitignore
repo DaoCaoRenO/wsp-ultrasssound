@@ -28,3 +28,6 @@ api_out/
 .DS_Store
 code2026-10-30/code/fjh_blsamus_tiny/exp_out/
 code2026-10-30/code/blsamus/exp_out/
+# ===== 本地数据组装: symlink 目录,不推 GitHub =====
+**/data_nothy/
+**/data_usic*/
