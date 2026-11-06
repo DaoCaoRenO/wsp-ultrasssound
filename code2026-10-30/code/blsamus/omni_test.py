@@ -62,6 +62,8 @@ parser.add_argument('--eval', action='store_true', help='Perform evaluation only
 parser.add_argument('--throughput', action='store_true', help='Test throughput only')
 
 parser.add_argument('--prompt', action='store_true', help='using prompt')
+parser.add_argument('--result_csv', default='exp_out/result.csv',
+                    help='指标输出 CSV；B 实验用独立路径避免覆盖官方 blsamus 基线行')
 
 args = parser.parse_args()
 config = get_config(args)
@@ -71,8 +73,8 @@ def inference(args, model, test_save_path=None):
     import csv
     import time
 
-    if not os.path.exists("exp_out/result.csv"):
-        with open("exp_out/result.csv", 'w', newline='') as csvfile:
+    if not os.path.exists(args.result_csv):
+        with open(args.result_csv, 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(['dataset', 'task', 'metric', 'time'])
 
@@ -149,7 +151,7 @@ def inference(args, model, test_save_path=None):
         performance = np.mean(metric_list, axis=0)
         logging.info('Testing performance in best val model: mean_dice : %f' % (performance))
 
-        with open("exp_out/result.csv", 'a', newline='') as csvfile:
+        with open(args.result_csv, 'a', newline='') as csvfile:
             writer = csv.writer(csvfile)
             if args.prompt:
                 writer.writerow([dataset_name, 'omni_seg_prompt@'+args.output_dir, performance,
@@ -222,7 +224,7 @@ def inference(args, model, test_save_path=None):
         performance = accuracy_score(label_list, prediction_list)
         logging.info('Testing performance in best val model: acc : %f' % (performance))
 
-        with open("exp_out/result.csv", 'a', newline='') as csvfile:
+        with open(args.result_csv, 'a', newline='') as csvfile:
             writer = csv.writer(csvfile)
             if args.prompt:
                 writer.writerow([dataset_name, 'omni_cls_prompt@'+args.output_dir, performance,
@@ -268,7 +270,7 @@ if __name__ == "__main__":
             full_dict["module."+k] = v
             del full_dict[k]
 
-    msg = model.load_state_dict(full_dict)
+    msg = model.load_state_dict(full_dict, strict=False)  # strict=False: B 训练 num_classes=2 时未实例化 cls2/seg2_cls3 扩展头
 
     print("self trained swin unet", msg)
     snapshot_name = snapshot.split('/')[-1]

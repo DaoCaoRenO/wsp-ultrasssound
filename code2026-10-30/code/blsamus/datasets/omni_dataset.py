@@ -34,6 +34,7 @@ position_prompt_dict = {
     "private_Fetal_Head": "head",
     "private_Kidney": "kidney",
     "private_Thyroid": "thyroid",
+    "TN3K": "thyroid",
 }
 # nature prompt
 nature_prompt_dict = {
@@ -55,6 +56,7 @@ nature_prompt_dict = {
     "private_Fetal_Head": "organ",
     "private_Kidney": "organ",
     "private_Thyroid": "tumor",
+    "TN3K": "tumor",
 }
 # type prompt
 available_type_prompt_list = [
